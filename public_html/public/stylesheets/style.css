@@ -1,0 +1,65 @@
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+
+
+/* CSS for the in D3 circle */
+.circleText{
+    color: #333333;
+    font-family: sans-serif;
+    font-size: 18px;
+    text-shadow: 2px 2px 5px grey;
+}
+
+.circle{
+    padding: 100px;
+    position: relative;
+    left: 450px;
+    top: 100px;
+}
+
+/* CSS for the in D3 graph */
+
+.graph{
+    padding-bottom: 400px;
+    position: relative;
+    top: 1000px;
+}
+
+.pathClass{
+    stroke-width: 2px;
+    stroke: blue;
+    fill: none;
+}
+
+.axis path{
+    fill: none;
+    stroke: #777;
+    shape-rendering: crispEdges;
+}
+
+.y.label, .x.label{
+    color: #333333;
+    font-family:  sans-serif;
+    font-size: 16px;
+    text-shadow: 4px 4px 5px grey;
+
+}
+
+/* CSS for the data */
+#data{
+    height: 1000px;
+    width: 250px;
+    color: #ffffff;
+    position: fixed;
+    list-style-type: none;
+    background-color: #4d4d4d;
+}
+
+#dataHeading{
+    font-weight: bold;
+    color: #00ff00;
+    font-family:  sans-serif;
+    font-size: 12px;
+}

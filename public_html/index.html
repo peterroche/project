@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WeatherPi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' href='public/stylesheets/style.css'/>
+    <script src="public/javascripts/controller.js"></script>
+
+</head>
+
+<body ng-app='myApp' ng-controller='myCtrl'>
+
+<ul id="data">
+    <br><br><br><br>
+    <li>
+        <p id="dataHeading"> Time(s) &nbsp&nbsp&nbsp Temperature(°) </p>
+    </li>
+    <li ng-repeat="x in mongoData">
+        {{ x.time }} &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{ x.temp }}
+    </li>
+</ul>
+
+<temp-circle radius-data="liveTemp.currentTemp" id="tempCircle"></temp-circle>
+
+<temp-graph graph-data="mongoData"></temp-graph>
+</body>
+</html>
