@@ -1,0 +1,9 @@
+<form action="/" id="myLogin">
+    Username: <input type="text" id="username" ng-model="username"><br>
+    Password: <input type="password" id="password" ng-model="password">
+    <button type="button" ng-click="register()">Register</button>
+</form>
+
+<h2>Username: {{regStatus.username}}</h2>
+<h2>Password: {{regStatus.password}}</h2>
+<h2>Registered: {{regStatus.register}}</h2>

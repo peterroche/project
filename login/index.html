@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Login App</title>
+        <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.0/angular-route.min.js"></script>
+        <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.min.js"></script>
+        <script src="app2.js"></script>
+    </head>
+    
+    <body ng-app="loginApp">
+        
+        <!--<button type="button" ui-sref="state1">State 1</button>
+        <button type="button" ui-sref="state2">State 2</button>-->
+        
+        <a ui-sref="login">State 1</a>
+        <a ui-sref="register">State 2</a>
+        
+        
+        <div ui-view></div>
+        
+        
+    </body>
+</html>
