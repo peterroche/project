@@ -1,10 +1,5 @@
-<form action="/" id="myLogin">
+<form id="loginFrom" ng-submit="login()" novalidate>
     Username: <input type="text" id="username" ng-model="username"><br>
     Password: <input type="password" id="password" ng-model="password">
-    <button type="button" ng-click="login()">Login</button>
+    <button type="submit">Logins</button>
 </form>
-
-
-<h2>Login Username: {{loginAuth.username}}</h2>
-<h2>Login Password: {{loginAuth.password}}</h2>
-<h2>Login Success: {{loginAuth.success}}</h2>

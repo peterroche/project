@@ -1,5 +1,16 @@
-<h1>Logged in as {{ currentUser }}</h1>
+<h1>Logged in as  {{ test }}</h1>
 
 <a ui-sref=".circle">Show Circle</a>
 <a ui-sref=".graph">Show Graph</a>
+
+<div ng-if="currentUser">Welcome, {{ currentUser.name }}</div>
+<div ng-if="isAuthorized(userRoles.admin)">You're admin.</div>
+<div ng-switch on="currentUser.role">
+  <div ng-switch-when="userRoles.admin">You're admin.</div>
+  <div ng-switch-when="userRoles.editor">You're editor.</div>
+  <div ng-switch-default>You're will need to fix this if you want admins.</div>
+</div>
+
+<button type="button" ng-click="logout()">Logout</button>
+
 <div ui-view></div>

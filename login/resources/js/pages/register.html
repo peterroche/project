@@ -1,7 +1,7 @@
-<form action="/" id="myLogin">
+<form id="myLogin" ng-submit="register()" novalidate>
     Username: <input type="text" id="username" ng-model="username"><br>
     Password: <input type="password" id="password" ng-model="password">
-    <button type="button" ng-click="register()">Register</button>
+    <button type="submit">Register</button>
 </form>
 
 <h2>Username: {{regStatus.username}}</h2>

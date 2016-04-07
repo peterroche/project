@@ -3,9 +3,29 @@ var app = express();
 var bodyParser = require('body-parser');
 var port = 3000;
 var cors = require('cors');
+var jwt = require('jwt-simple');
+var _ = require('underscore');
 
 app.use(cors());
+app.set('jwtTokenSecret', 'raspPItoken');
+
+
+
 var jsonParser = bodyParser.json();
+
+var tokens = [];
+
+
+function removeFromTokens(token) {
+    console.log(tokens.length);
+    for (var counter = 0; counter < tokens.length; counter++) {
+        if (tokens[counter] === token) {
+            tokens.splice(counter, 1);
+            break;
+        }
+    }
+    console.log(tokens.length);
+}
 
 
 
@@ -24,39 +44,38 @@ db.once('open', function() {
 
 
 
-function autherizeUser(uname, pword){
-   
-    
-    userModel.findOne({ username: uname, password: pword }, 'username password', function(err, user){
-        if(err){
-            console.error(err);
-        } else{
-            console.info('Found User: ' + user);
-        }
-    })
-};
-
-
-
 
 app.get('/login/:username/:password', function (req, res) {
-    
-    userModel.findOne({ username: req.params.username, password: req.params.password }, 'username password', function(err, user){
+    var username = req.params.username;
+    var password = req.params.password;
+    userModel.findOne({ username: username, password: password }, 'username password', function(err, user){
         if(err){
             console.error(err);
         } else{
             console.info('User: ' + user);
             if(user === null){
-                res.json({username: req.params.username, password: req.params.password, success: false});
+                res.json({username: username, success: false});
             }
             else{
-                res.json({username: req.params.username, password: req.params.password, success: true});
+                var expires = new Date();
+                expires.setDate((new Date()).getDate() + 1);
+                var token = jwt.encode({
+                    username: username,
+                    expires: expires
+                }, app.get('jwtTokenSecret'));
+
+                tokens.push(token);
+                res.json({ access_token: token, username: username, success: true});
             }
         }
-    });
-    
-    
-    
+    });   
+});
+
+
+app.post('/logout', jsonParser, function(req, res) {
+    var token= req.body.access_token;
+    removeFromTokens(token);
+    res.send(200);
 });
 
 
