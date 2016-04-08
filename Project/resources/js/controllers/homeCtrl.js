@@ -1,4 +1,21 @@
-app.controller('myCtrl', ['$scope', '$http', '$interval', function($scope, $http, $interval){
+app.controller('homeCtrl', function($scope, $location, authService, auth, $timeout, logoutService, $interval){
+    
+    $scope.userDetails = auth;
+    
+    $timeout(function(){
+        $scope.logout();
+    }, 300000);
+
+    $scope.logout = function () {
+        logoutService.logout().then(function (result) {
+                $scope.userDetails = null;
+                $location.path("/login");
+        }, function (error) {
+                console.error(error);
+        });
+    };
+    
+    
 
    /* $interval(function(){
         $http.get('http://140.203.245.123:3000/live').success(function(data){
@@ -35,4 +52,4 @@ app.controller('myCtrl', ['$scope', '$http', '$interval', function($scope, $http
         {time: 20, temp: 25.1}
     ];
     
-}]);
+});
